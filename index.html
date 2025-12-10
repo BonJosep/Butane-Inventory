@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Butane Inventory Calculator</title>
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Butane Inventory Calculator ⛽</h1>
+      <p class="subtitle">Dark mode • Offline-ready</p>
+    </header>
+
+    <section class="card inputs">
+      <h2>Butane Inventory Inputs</h2>
+      <div class="grid">
+        <label>Refill Price
+          <input id="refill_price" inputmode="decimal" placeholder="0.00">
+        </label>
+
+        <label>Brand New Price
+          <input id="brand_new_price" inputmode="decimal" placeholder="0.00">
+        </label>
+
+        <label>Out (Stocks taken out)
+          <input id="stocks_out" inputmode="numeric" placeholder="0">
+        </label>
+
+        <label>B.O. (Back out/unsellable)
+          <input id="back_out" inputmode="numeric" placeholder="0">
+        </label>
+
+        <label>Remain (Remaining items)
+          <input id="remaining_items" inputmode="numeric" placeholder="0">
+        </label>
+
+        <label>Empty Cans (Exchanged)
+          <input id="empty_cans" inputmode="numeric" placeholder="0">
+        </label>
+      </div>
+
+      <button id="calculate_btn" class="btn primary">Calculate Sales</button>
+      <div id="date_sales" class="muted small"></div>
+    </section>
+
+    <section class="card results">
+      <h2>Calculation Results 💰</h2>
+      <div id="results_container" class="results-list"></div>
+    </section>
+
+    <section class="card expenses">
+      <h2>Add Expenses 💸</h2>
+      <div class="expense-row">
+        <input id="expense_name" placeholder="e.g., Gasoline, Food">
+        <input id="expense_amount" inputmode="decimal" placeholder="0.00">
+        <button id="add_expense_btn" class="btn">Add Expense</button>
+      </div>
+
+      <h3>Expenses List</h3>
+      <div id="expenses_list" class="expenses-list"></div>
+    </section>
+
+    <section class="card final">
+      <h2>Final Calculation 🏁</h2>
+      <button id="final_calc_btn" class="btn success">Perform Final Calculation</button>
+      <div id="final_results" class="results-list"></div>
+      <div id="date_final" class="muted small"></div>
+    </section>
+
+    <footer class="app-footer muted small">
+      <p>Designed for offline use. Data stored locally on this device.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(function(err){
+        console.warn('ServiceWorker registration failed:', err);
+      });
+    }
+  </script>
+</body>
+</html>
